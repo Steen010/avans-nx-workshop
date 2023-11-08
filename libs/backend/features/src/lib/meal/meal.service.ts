@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { IMeal } from '@avans-nx-workshop/shared/api';
+import { IMeal, MealSort } from '@avans-nx-workshop/shared/api';
 import { BehaviorSubject } from 'rxjs';
 import { Logger } from '@nestjs/common';
 
@@ -14,6 +14,8 @@ export class MealService {
       description: 'Vega version of the famous spaghetti recipe.',
       isVega: true,
       dateServed: new Date(),
+      sort: MealSort.Dinner,
+      cook: 'Koen van Steen',
     },
   ]);
 
@@ -36,7 +38,7 @@ export class MealService {
    * return signature - we still want to respond with the complete
    * object
    */
-  create(meal: Pick<IMeal, 'title' | 'description'>): IMeal {
+  create(meal: Pick<IMeal, 'title' | 'description' | 'cook' | 'sort'>): IMeal {
     Logger.log('create', this.TAG);
     const current = this.meals$.value;
     // Use the incoming data, a randomized ID, and a default value of `false` to create the new to-do
