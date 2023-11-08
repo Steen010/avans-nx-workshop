@@ -1,3 +1,3 @@
 export * from './lib/dto.module';
 export * from './lib/meal.dto';
-//export * from './lib/api-response.interception';
+export * from './lib/api-response.interceptor';
